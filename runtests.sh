@@ -20,22 +20,22 @@ function show_help {
 }
 
 function runtest {
-    killall monitor
-    killall redis-server
+    pkill -9 monitor
+    pkill -9 redis-server
     
     /mvee_module/monitor -f /target_apps/monitor.conf | tee -a $MONITORLOG &
     sleep 5
     
     tclsh tests/test_helper.tcl --host localhost --port 6379 --clients 1 --single $1 | tee -a $TESTINGLOG
-    if [[ $? -eq 0 ]]
+    if [[ "${PIPESTATUS[0]}" -eq "0" ]]
         then
             RESULTS+=("$1 : SUCCEEDED")
         else
             RESULTS+=("$1 : FAILED")
     fi
     
-    killall monitor
-    killall redis-server
+    pkill -9 monitor
+    pkill -9 redis-server
 }
 
 # ---------------------------------------------------------------------
@@ -89,7 +89,7 @@ TESTS+=(
 if [[ -n "$*" ]]
     then 
         unset TESTS
-        TESTS="$@"
+        TESTS=("$@")
 fi
         
 echo "Test Count: ${#TESTS[@]}"
