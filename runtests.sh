@@ -23,11 +23,14 @@ function runtest {
     pkill -9 monitor
     pkill -9 redis-server
     
-    /mvee_module/monitor -f /target_apps/monitor.conf | tee -a $MONITORLOG &
-    while ! grep -q 'Ready to accept connections' $MONITORLOG
+    fifo=/tmp/tmpfifo.$$
+    mkfifo "${fifo}" || exit 1
+    /mvee_module/monitor -f /target_apps/monitor.conf | tee -a $MONITORLOG | tee ${fifo} &
+    while ! grep -q 'Ready to accept connections' ${fifo}
     do
         sleep 1
     done
+    rm ${fifo}
     
     tclsh tests/test_helper.tcl --host localhost --port 6379 --clients 1 --single $1 | tee -a $TESTINGLOG
     if [[ "${PIPESTATUS[0]}" -eq "0" ]]
