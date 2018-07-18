@@ -97,6 +97,11 @@ TESTS+=(
 "unit/type/set"
 "unit/type/string"
 "unit/wait"
+"integration/replication-2"
+"integration/replication-3"
+"integration/replication-4"
+"integration/replication-psync"
+"integration/psync2"
 "integration/psync2-reg"
 )
 
