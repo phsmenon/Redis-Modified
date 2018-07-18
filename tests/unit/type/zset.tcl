@@ -23,6 +23,7 @@ start_server {tags {"zset"}} {
             r zadd ztmp 10 x
             assert_encoding $encoding ztmp
         }
+	r "FLUSHALL"
 
         test "ZSET basic ZADD and score update - $encoding" {
             r del ztmp

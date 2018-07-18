@@ -95,6 +95,7 @@ TESTS+=(
 "unit/type/list-common"
 "unit/type/list"
 "unit/type/set"
+"unit/type/zset"
 "unit/type/string"
 "unit/wait"
 "integration/replication-2"
