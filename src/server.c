@@ -3278,20 +3278,20 @@ sds genRedisInfoString(char *section) {
             server.repl_backlog_histlen);
     }
 
-    /* CPU */
-    if (allsections || defsections || !strcasecmp(section,"cpu")) {
-        if (sections++) info = sdscat(info,"\r\n");
-        info = sdscatprintf(info,
-        "# CPU\r\n"
-        "used_cpu_sys:%.2f\r\n"
-        "used_cpu_user:%.2f\r\n"
-        "used_cpu_sys_children:%.2f\r\n"
-        "used_cpu_user_children:%.2f\r\n",
-        (float)self_ru.ru_stime.tv_sec+(float)self_ru.ru_stime.tv_usec/1000000,
-        (float)self_ru.ru_utime.tv_sec+(float)self_ru.ru_utime.tv_usec/1000000,
-        (float)c_ru.ru_stime.tv_sec+(float)c_ru.ru_stime.tv_usec/1000000,
-        (float)c_ru.ru_utime.tv_sec+(float)c_ru.ru_utime.tv_usec/1000000);
-    }
+    /* /\* CPU *\/ */
+    /* if (allsections || defsections || !strcasecmp(section,"cpu")) { */
+    /*     if (sections++) info = sdscat(info,"\r\n"); */
+    /*     info = sdscatprintf(info, */
+    /*     "# CPU\r\n" */
+    /*     "used_cpu_sys:%.2f\r\n" */
+    /*     "used_cpu_user:%.2f\r\n" */
+    /*     "used_cpu_sys_children:%.2f\r\n" */
+    /*     "used_cpu_user_children:%.2f\r\n", */
+    /*     (float)self_ru.ru_stime.tv_sec+(float)self_ru.ru_stime.tv_usec/1000000, */
+    /*     (float)self_ru.ru_utime.tv_sec+(float)self_ru.ru_utime.tv_usec/1000000, */
+    /*     (float)c_ru.ru_stime.tv_sec+(float)c_ru.ru_stime.tv_usec/1000000, */
+    /*     (float)c_ru.ru_utime.tv_sec+(float)c_ru.ru_utime.tv_usec/1000000); */
+    /* } */
 
     /* Command statistics */
     if (allsections || !strcasecmp(section,"commandstats")) {
