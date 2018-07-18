@@ -1,0 +1,16 @@
+{
+  "atd": {
+    "name": "Redis",
+    "server": "redis",
+    "class": "NO_POLLS"
+  },
+  "variant": {
+    "global": {
+      "exec": {
+        "env": [
+          "TZ=America/New_York"
+        ]
+      }
+    }
+  }
+}
