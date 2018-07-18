@@ -93,7 +93,6 @@ TESTS+=(
 "unit/type/list"
 "unit/type/set"
 "unit/type/string"
-"unit/type/zset"
 "unit/wait"
 "integration/psync2-reg"
 )
